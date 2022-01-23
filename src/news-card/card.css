@@ -1,0 +1,22 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lastone {
+  width: 100px;
+  height: 80px;
+}
+
+@media (min-width: 800px) {
+  .vilas-card {
+    width: 18rem;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

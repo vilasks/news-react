@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
+import React from 'react';
+import BottomNav from './bottom-nav'
+import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import Home from './MainContainer'
+import Search from './search'
+import SavedList from './savedlist'
+import InvalidRoute from './invalidroute';
+
+
+function  App() {
+  // const [country,setCountry] = useState("in")
+  // const [category,setCategory] = useState("general")
+  // const pages = 1
+  // const changeCountry = (label) => {
+  //   setCountry(label);
+    
+  // }
+
+  // const changeCategory = (newCategory) => {
+  //   setCategory(newCategory);
+  // }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" exact element={<Home/>}/>
+          <Route path="/search" element={<Search/>}/>
+          <Route path="/savedlist" element={<SavedList/>}/>
+          <Route path="*" element={<InvalidRoute/>}/>
+        </Routes>
+      
+      <BottomNav/>
+      </BrowserRouter>
+        
+      </div>
   );
 }
 

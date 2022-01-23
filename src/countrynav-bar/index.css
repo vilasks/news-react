@@ -1,0 +1,14 @@
+.vilas-nav {
+  display: flex;
+  overflow-y: scroll;
+}
+
+/* ::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  ::-webkit-scrollbar {
+    display: inline;
+  }
+} */
