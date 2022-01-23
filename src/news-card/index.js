@@ -84,36 +84,12 @@ export const Index = ({country,category,pages,isloaded}) => {
         if(totalArticles === data.length){
             setHasMore(false)
         }
-            sessionStorage.setItem("homedata",JSON.stringify(data));
-            sessionStorage.setItem("homecountry",country);
-            sessionStorage.setItem("homecategory",category);
-            sessionStorage.setItem('homeisloading',false);
-            sessionStorage.setItem('homeiserror',isError);
-            sessionStorage.setItem('homehasmore',hasMore);
-            sessionStorage.setItem('hometotalarticles',totalArticles);
-            sessionStorage.setItem("homeendloader",endLoader);
     }
 
     
 
     useEffect(() => {
         
-        if(sessionStorage.getItem("homecountry")){
-            let sessioncountry = sessionStorage.getItem("homecountry");
-            let sessioncategory = sessionStorage.getItem("homecategory")
-            if(country===sessioncountry && category===sessioncategory){
-            country = sessionStorage.getItem("homecountry");
-            category = sessionStorage.getItem("homecategory")
-            setData(JSON.parse(sessionStorage.getItem("homedata")));
-            setIsLoading(JSON.parse(sessionStorage.getItem("homeisloading")));
-            setIsError(JSON.parse(sessionStorage.getItem("homeiserror")))
-            setHasMore(JSON.parse(sessionStorage.getItem("homehasmore")));
-            setTotalArticles(JSON.parse(sessionStorage.getItem("hometotalarticles")));
-            setEndLoader(JSON.parse(sessionStorage.getItem("homeendloader")));
-            isloaded(JSON.parse(sessionStorage.getItem("homeisloaded")))
-            return
-        }
-        }
         setIsLoading(true);
         setHasMore(true);
         const toUrl = `${url}country=${country}&category=${category}&page=${pages}&apiKey=${api}`
@@ -137,20 +113,6 @@ export const Index = ({country,category,pages,isloaded}) => {
             console.log(err)
             setIsError(true);
             setIsLoading(false)})
-
-
-            
-            sessionStorage.setItem("homecountry",country);
-            sessionStorage.setItem("homecategory",category);
-            sessionStorage.setItem('homeisloading',false);
-            sessionStorage.setItem('homeiserror',isError);
-            sessionStorage.setItem('homehasmore',hasMore);
-            sessionStorage.setItem('hometotalarticles',totalArticles);
-            sessionStorage.setItem("homeendloader",endLoader);
-            sessionStorage.setItem("homeisloaded",true)
-
-        
-        
 
     },[country,category])
 
