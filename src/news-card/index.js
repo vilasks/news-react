@@ -51,7 +51,7 @@ export const Index = ({country,category,pages,isloaded}) => {
     //         document.querySelector(".spinner-border").remove();
     //     },2000)
     // }
-    
+   
 
 
     const loadMore = () => {
