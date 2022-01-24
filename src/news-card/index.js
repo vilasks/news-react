@@ -59,7 +59,7 @@ export const Index = ({country,category,pages,isloaded}) => {
             setEndLoader(true)
             const toUrl = `${url}country=${country}&category=${category}&page=${page}`;
             const encodedUrl = encodeURIComponent(toUrl);
-            fetch(`http://localhost:9000/test?url=${encodedUrl}`)
+            fetch(`https://node-backend-react.herokuapp.com/test?url=${encodedUrl}`)
             .then((response) => {
                 if(response.status >= 200 && response.status <= 299){
                     return response.json();
@@ -95,7 +95,7 @@ export const Index = ({country,category,pages,isloaded}) => {
         setHasMore(true);
         const toUrl = `${url}country=${country}&category=${category}&page=${pages}`;
         const encodedUrl = encodeURIComponent(toUrl);
-        fetch(`http://localhost:9000/test?url=${encodedUrl}`)
+        fetch(`https://node-backend-react.herokuapp.com/test?url=${encodedUrl}`)
         .then((response) => {
             if(response.status >= 200 && response.status <= 299){
                 return response.json();

@@ -17,7 +17,7 @@ const Index = () => {
         const encodedUrl = encodeURIComponent(url)
         axios({
             method:"GET",
-            url:`http://localhost:9000/test?url=${encodedUrl}`,
+            url:`https://node-backend-react.herokuapp.com/test?url=${encodedUrl}`,
             cancelToken:new axios.CancelToken(c => cancel = c)
         }).then(res => {
             const {articles} = res.data
