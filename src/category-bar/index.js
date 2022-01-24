@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './index.css'
 const Index  = ({changeCategory,activecategory}) => {
     const categories = [
     'General',
@@ -17,7 +18,7 @@ const Index  = ({changeCategory,activecategory}) => {
     
 
     return(
-        <div className="row row-cols-4" style={{position:"-webkit-sticky"}}>
+        <div className="category-container">
             {categories.map((category) => {
                 if(category.toLowerCase()===activecategory){
                          return(

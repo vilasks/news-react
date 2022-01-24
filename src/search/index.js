@@ -7,15 +7,17 @@ const Index = () => {
     const [inputText,setInputText] = useState("");
     const [searchResults,setSearchResults] = useState([])
     const [error,setError] = useState(false)
-    
+    const [testapiresult,setTestApiResults] = useState({});
     const search = (e) => {
         sessionStorage.setItem("searchKey",inputText);
         e.preventDefault()
         if(!inputText)return
         let cancel
+        const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30`;
+        const encodedUrl = encodeURIComponent(url)
         axios({
             method:"GET",
-            url:`https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30&apiKey=${api}`,
+            url:`http://localhost:9000/test?url=${encodedUrl}`,
             cancelToken:new axios.CancelToken(c => cancel = c)
         }).then(res => {
             const {articles} = res.data
@@ -30,6 +32,22 @@ const Index = () => {
             cancel()
         }
     }
+
+
+    // const checkApi = () => {
+    //     const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30`
+    //     const encodedUrl = encodeURIComponent(url)
+    //     fetch(`http://localhost:9000/test?url=${encodedUrl}`)
+    //     .then(res => {
+    //         return res.json()
+    //     }).then(res => {
+    //         const {articles} = res
+    //         setSearchResults(articles)
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // }
 
     useEffect(() => {
         if(!sessionStorage.getItem("searchKey")) return
@@ -63,6 +81,8 @@ const Index = () => {
                 
                 </div>
             </div>
+            
+            
         </div>
     )
    }
