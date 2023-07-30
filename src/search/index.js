@@ -5,6 +5,7 @@ import Card from '../news-card/card'
 import './index.css'
 const Index = () => {
     const [inputText,setInputText] = useState("");
+    const api_key = 'd1e2d12e8f7c4323af2f5468e0053752';
     const [searchResults,setSearchResults] = useState([])
     const [error,setError] = useState(false)
     const [testapiresult,setTestApiResults] = useState({});
@@ -13,11 +14,11 @@ const Index = () => {
         e.preventDefault()
         if(!inputText)return
         let cancel
-        const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30`;
-        const encodedUrl = encodeURIComponent(url)
+        const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30&apiKey=${api_key}`;
+        const encodedUrl = url
         axios({
             method:"GET",
-            url:`https://test-z9a2.onrender.com/test?url=${encodedUrl}`,
+            url: encodedUrl,
             cancelToken:new axios.CancelToken(c => cancel = c)
         }).then(res => {
             const {articles} = res.data

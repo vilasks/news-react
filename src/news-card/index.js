@@ -7,6 +7,7 @@ import './card.css'
 
 export const Index = ({country,category,pages,isloaded}) => {
     const url = "https://newsapi.org/v2/top-headlines?";
+    const api_key = 'd1e2d12e8f7c4323af2f5468e0053752';
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(false);
     const [data,setData] = useState([]);
@@ -57,9 +58,9 @@ export const Index = ({country,category,pages,isloaded}) => {
     const loadMore = () => {
         if(hasMore){
             setEndLoader(true)
-            const toUrl = `${url}country=${country}&category=${category}&page=${page}`;
-            const encodedUrl = encodeURIComponent(toUrl);
-            fetch(`https://test-z9a2.onrender.com/test?url=${encodedUrl}`)
+            const toUrl = `${url}country=${country}&category=${category}&page=${page}&apiKey=${api_key}`;
+            const encodedUrl = toUrl;
+            fetch(encodedUrl)
             .then((response) => {
                 if(response.status >= 200 && response.status <= 299){
                     return response.json();
@@ -93,9 +94,9 @@ export const Index = ({country,category,pages,isloaded}) => {
         
         setIsLoading(true);
         setHasMore(true);
-        const toUrl = `${url}country=${country}&category=${category}&page=${pages}`;
-        const encodedUrl = encodeURIComponent(toUrl);
-        fetch(`https://test-z9a2.onrender.com/test?url=${encodedUrl}`)
+        const toUrl = `${url}country=${country}&category=${category}&page=${pages}&apiKey=${api_key}`;
+        const encodedUrl = toUrl;
+        fetch(encodedUrl)
         .then((response) => {
             if(response.status >= 200 && response.status <= 299){
                 return response.json();
