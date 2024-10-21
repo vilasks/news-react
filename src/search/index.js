@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {api} from '../data'
 import Card from '../news-card/card'
 import './index.css'
 const Index = () => {
     const [inputText,setInputText] = useState("");
-    const api_key = 'd1e2d12e8f7c4323af2f5468e0053752';
     const [searchResults,setSearchResults] = useState([])
     const [error,setError] = useState(false)
     const [testapiresult,setTestApiResults] = useState({});
@@ -14,7 +12,8 @@ const Index = () => {
         e.preventDefault()
         if(!inputText)return
         let cancel
-        const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30&apiKey=${api_key}`;
+        const backend_url = process.env.REACT_APP_BACKEND_URL;
+        const url = `${backend_url}?url=https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30`;
         const encodedUrl = url
         axios({
             method:"GET",
@@ -34,21 +33,6 @@ const Index = () => {
         }
     }
 
-
-    // const checkApi = () => {
-    //     const url = `https://newsapi.org/v2/everything?q=${inputText}&sortBy=relevancy&pageSize=30`
-    //     const encodedUrl = encodeURIComponent(url)
-    //     fetch(`http://localhost:9000/test?url=${encodedUrl}`)
-    //     .then(res => {
-    //         return res.json()
-    //     }).then(res => {
-    //         const {articles} = res
-    //         setSearchResults(articles)
-    //     })
-    //     .catch(err => {
-    //         console.log(err)
-    //     })
-    // }
 
     useEffect(() => {
         if(!sessionStorage.getItem("searchKey")) return
@@ -72,7 +56,7 @@ const Index = () => {
            <div className="container main-container">
                 <div className="container d-flex flex-column">
                     <div className="card-container" >
-                    {searchResults.map((article,i) => {
+                    {searchResults?.map((article,i) => {
                     return(
                         <div>
                             <Card key={new Date().toString()+i.toString()} article={article}/>

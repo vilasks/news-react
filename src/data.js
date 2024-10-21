@@ -108,5 +108,3 @@ export const countryList = [
         {label:'ve',
         country:'venuzuela'}
 ]
-
-export const api = "d1e2d12e8f7c4323af2f5468e0053752";

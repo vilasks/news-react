@@ -5,29 +5,23 @@ import {Index} from '../news-card/index';
 import CategoryBar from '../category-bar';
 import Footer from '../footer'
 const Home = () => {
-    const [country,setCountry] = useState("in")
-    const [category,setCategory] = useState("general")
+    const [country,setCountry] = useState(process.env.REACT_APP_DEFAULT_COUNTRY)
+    const [category,setCategory] = useState(process.env.REACT_APP_DEFAULT_CATEGORY)
     const [isLoaded,setIsLoaded] = useState(false);
     const pages = 1;
 
     const changeCountry = (label) => {
         setCountry(label)
-        
-      
     }
 
     const isloaded = (statess) => {
       setIsLoaded(statess)
-      
     }
+    
     const changeCategory = (newCategory) => {
-        setCategory(newCategory);
-        
+        setCategory(newCategory);   
     }
 
-  
-
-  
   return (
     <div>
         <Header/>

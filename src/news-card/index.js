@@ -7,7 +7,7 @@ import './card.css'
 
 export const Index = ({country,category,pages,isloaded}) => {
     const url = "https://newsapi.org/v2/top-headlines?";
-    const api_key = 'd1e2d12e8f7c4323af2f5468e0053752';
+    const backend_url = process.env.REACT_APP_BACKEND_URL
     const [isLoading,setIsLoading] = useState(true);
     const [isError,setIsError] = useState(false);
     const [data,setData] = useState([]);
@@ -15,50 +15,12 @@ export const Index = ({country,category,pages,isloaded}) => {
     const [endLoader,setEndLoader] = useState(false);
     const [hasMore,setHasMore] = useState(true)
     const [totalArticles,setTotalArticles] = useState(0)
-    // const observer = useRef(null)
-    
-    // const atEnd = useCallback((node) => {
-    //     if(observer.current)observer.current.disconnect()
-    //     observer.current = new IntersectionObserver((entries) => {
-    //         if(!entries[0].isIntersecting)return
-    //         setEndLoader(true)
-    //         loadMore()
-    //     },{threshold:1})
-    //     if(node)observer.current.observe(node)
-        
-    // })
-
-    // const observerFunction = useCallback((element) => {
-    //         const targetElement = element[0]
-    //         if(!targetElement.isIntersecting) return
-    //             console.log(targetElement)
-    //             const toUrl = `${url}country=${country}&category=${category}&${page}&apiKey=${api}`;
-    //             setPage(prev => prev+1)
-    //             getData(toUrl)
-    //         // if(document.querySelector('.spinner-border')) return
-    //         // const textdiv = document.createElement('div');
-    //         // const textfordiv = document.createElement('h2');
-    //         // textfordiv.textContent = "Loading...";
-    //         // textfordiv.classList.add("visually-hidden")
-    //         // textdiv.classList.add("spinner-border")
-    //         // textdiv.appendChild(textfordiv)
-    //         // const cardContainer = document.querySelector('.card-container');
-    //         // cardContainer.append(textdiv);
-    //         // testCallback()
-    // },[])
-
-    // const testCallback = () => {
-    //     setTimeout(() => {
-    //         document.querySelector(".spinner-border").remove();
-    //     },2000)
-    // }
    
-
 
     const loadMore = () => {
         if(hasMore){
             setEndLoader(true)
-            const toUrl = `${url}country=${country}&category=${category}&page=${page}&apiKey=${api_key}`;
+            const toUrl = `${backend_url}?url=${url}country=${country}&category=${category}&page=${page}`;
             const encodedUrl = toUrl;
             fetch(encodedUrl)
             .then((response) => {
@@ -94,7 +56,7 @@ export const Index = ({country,category,pages,isloaded}) => {
         
         setIsLoading(true);
         setHasMore(true);
-        const toUrl = `${url}country=${country}&category=${category}&page=${pages}&apiKey=${api_key}`;
+        const toUrl = `${backend_url}?url=${url}country=${country}&category=${category}&page=${page}`;
         const encodedUrl = toUrl;
         fetch(encodedUrl)
         .then((response) => {
@@ -118,50 +80,6 @@ export const Index = ({country,category,pages,isloaded}) => {
             setIsLoading(false)})
 
     },[country,category])
-
-
-    
-
-//    useEffect(() => {
-//         const cardObserver = new IntersectionObserver(observerFunction,{rootMargin:'30px'})
-//         if(loader.current) cardObserver.observe(loader.current)
-//         console.log(loader.current)
-//     },[observerFunction]) 
-
-//     useEffect(() => {
-        
-//         const currentObserver = observer.current
-//         if(lastElement){
-//             console.log("Inside Effect")
-//             currentObserver.observe(lastElement)
-//         }
-
-        
-//     },[lastElement])
-
-//     window.onscroll = () => {
-//         if(document.documentElement.scrollHeight - document.documentElement.scrollTop <= document.documentElement.clientHeight){
-//             setEndLoader(true)
-//             loadMore();
-//         }
-//     }
-
-//     const checkEnd = () => {
-//         if(document.documentElement.scrollHeight - document.documentElement.scrollTop <= document.documentElement.clientHeight){
-//                     setEndLoader(true)
-//                     loadMore();
-//                 }
-//     }
-
-
-//     document.ontouchmove = () => {
-//         if(document.documentElement.scrollHeight - document.documentElement.scrollTop <= document.documentElement.clientHeight){
-//             setEndLoader(true)
-//             loadMore();
-//         }
-//     }
-
-//     const {status,articles,totalResults} = data
 
 
 
